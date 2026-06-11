@@ -1,0 +1,39 @@
+{
+  "name": "cafe-tudo",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Monorepo untuk aplikasi pemesanan menu Cafe TUDO berbasis QR Code.",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @cafe-tudo/web",
+    "dev:api": "npm run dev --workspace @cafe-tudo/api",
+    "dev:web": "npm run dev --workspace @cafe-tudo/web",
+    "build": "npm run build:web && npm run build:api",
+    "build:api": "npm run build --workspace @cafe-tudo/api",
+    "build:web": "npm run build --workspace @cafe-tudo/web",
+    "preview": "npm run preview --workspace @cafe-tudo/web",
+    "clean": "npm run clean --workspace @cafe-tudo/web",
+    "test:api": "npm run test --workspace @cafe-tudo/api",
+    "test:e2e": "npm run setup:api && playwright test",
+    "test:e2e:headed": "npm run setup:api && playwright test --headed",
+    "setup:api": "npm run db:setup --workspace @cafe-tudo/api",
+    "check": "npm run build && npm run test:api"
+  },
+  "engines": {
+    "node": ">=20.19.0",
+    "npm": ">=10.0.0"
+  },
+  "overrides": {
+    "@types/react": "18.3.29",
+    "@types/react-dom": "18.3.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/react": "18.3.29",
+    "@types/react-dom": "18.3.7"
+  }
+}
